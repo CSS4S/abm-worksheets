@@ -1,0 +1,34 @@
+---
+title: "R Skills Worksheet 2: Networks"
+date: April 2, 2025
+
+format:
+  html:
+    include-in-header: header.html
+    theme: 
+      light:
+        - theme-light.scss
+      dark:
+        - darkly 
+        - theme-dark.scss
+    fontsize: 1.05em
+    linestretch: 1.8
+    toc: true
+---
+
+## Wrapping Up: Networks and Diffusion
+
+We've now created agents and placed them in structured environments. One important next step is to understand how the structure of a social network affects the spread of information, behaviors, or innovations.
+
+How can we add realism to our social network models? What does "realism" look like? Next lecture we'll expand our theoretical knowledge of social networks, likely followed by another hands-on Worksheet session on Wednesday.
+
+For now, consider this:
+
+> **Which kinds of social networks help spread information best—and why?**
+
+One classic paper on how network structure might affect diffusion is Watts and Strogatz's 1998 study that creates "long-range ties" that connect agents who would otherwise be socially distant from one another: <https://www.nature.com/articles/30918>. Please have a look at this paper in the next week or so. Here is a preview of small-world networks that start from a *regular lattice* that has each of its edges progressively "rewired" with probability $p$, called the *rewiring probability.* (Hint: copy the "Small-world networks" example from `socmod` documentation in the *random networks* section: <https://css4s.github.io/socmod/#random-networks>)
+
+```{r}
+
+```
+

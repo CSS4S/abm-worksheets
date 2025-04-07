@@ -25,13 +25,13 @@ library(ggnetwork)
 library(ggplot2)
 ```
 
-### Create and initialize agents using `socmod`
+## Quick example using `socmod` for agent-based modeling
 
 Here we will do a quick-start example of how to use `socmod` to make sure everything installed as we expected, and to demonstrate the connection between some theory we covered Monday with the code we'll be working with in this class.
 
 We are going to consider the following situation where Agent 1 is considering installing residential solar (@fig-solar). Blue lines between agents indicates they are socially acquainted enough to learn from one another, i.e., they are socially connected in a social network.
 
-![](images/clipboard-756462474.png){#fig-solar width="800"}
+![](first-example-sketch.png){#fig-solar width="800"}
 
 ```{r}
 # Create agents...
@@ -111,168 +111,6 @@ ggplot(result$output, aes(x=t, y=A)) +
   theme_classic()
 ```
 
-Wait, what's going on here? Where did `success_bias_select_teacher`, `success_bias_interact`, and `iterate_learning_model` come from? They are also provided by the `socmod` package. The documentation for `socmod` is here: <https://css4s.github.io/socmod>, with this example of success-biased learning here: <https://css4s.github.io/socmod/#success-biased-adaptive-learning>.
-
-### Frequency-biased learning
-
-In addition to providing functions for success-biased learning, `socmod` also provides frequency-biased learning functions.
-
-```{r}
-
-
-```
-
-------------------------------------------------------------------------
-
-## Quarto Notebooks and Rendering
-
-### How do Quarto Markdown notebooks work?
-
--   Run individual code chunks with:
-    -   **Shift + Cmd + Enter** (Mac)\
-    -   **Shift + Ctrl + Enter** (Windows)
--   These run in the *same R session* as your console. If you define a variable in a chunk, it will also be available in the console.
--   Rendering the full document starts a **clean R session**.
-
-### Try this in a new `.qmd` file
-
-```{r}
-x <- 42
-```
-
-Now go to your console and type:
-
-```{r}
-x
-```
-
-Did it print 42?
-
-### Render the document and inspect variable persistence
-
-### Why does rendering in a clean session matter?
-
-------------------------------------------------------------------------
-
-## Understanding R Data Types and Functions
-
-### Values, Variables, Lists, and Vectors
-
-In R, everything is built on top of a few basic structures:
-
--   **Values**: basic data like numbers (`1`, `3.14`), text (`"hello"`), or logicals (`TRUE`, `FALSE`).
-
--   **Variables**: names you assign to values:
-
-    ```{r}
-    a <- 5
-    name <- "Alice"
-    ```
-
--   **Vectors**: ordered collections of values of the same type:
-
-    ```{r}
-    v <- c(1, 2, 3)
-    names <- c("Alice", "Bob")
-    ```
-
--   **Lists**: collections of elements that can be of mixed type:
-
-    ```{r}
-    mylist <- list(id = 1, name = "Alice", scores = c(10, 9, 8))
-    ```
-
-### From Vectors to Data Frames and Tibbles
-
-You can combine vectors into **data frames**, where each vector becomes a column. These are like spreadsheets in R.
-
-```{r}
-df <- data.frame(name = c("Alice", "Bob"), score = c(90, 85))
-```
-
-We often prefer **tibbles** (from the `tibble` package in the `tidyverse`) for modern workflows:
-
-```{r}
-library(tibble)
-tbl <- tibble(name = c("Alice", "Bob"), score = c(90, 85))
-```
-
-More on this in later lectures.
-
-### What Is a Function?
-
-Functions let us *encapsulate* logic and reuse it. You define them like this:
-
-```{r}
-square <- function(x) {
-  return(x^2)
-}
-
-square(3)  # returns 9
-```
-
-### Why Compartmentalize with Functions?
-
--   Reduces repetition
--   Makes code easier to debug and understand
--   Encourages modular, clean design
-
-You’ve already used a built-in function, `c()`. Soon, you’ll write your own!
-
-------------------------------------------------------------------------
-
-## Agents in R
-
-### Create a simple agent as a list
-
-```{r}
-agent <- list(id = 1, state = "off")
-```
-
-### Write a function to update your agent
-
-```{r}
-update_agent <- function(a) {
-  a$state <- "on"
-  return(a)
-}
-```
-
-### What happens when you run your update function?
-
-------------------------------------------------------------------------
-
-## Data Frames and Tibbles
-
-### What is a data frame in R?
-
-```{r}
-df <- data.frame(id = c(1,2), name = c("Alice", "Bob"))
-```
-
-### Check the structure of a data frame
-
-```{r}
-str(df)
-```
-
-### How is a data frame like a list?
-
-Tibbles are modern reimaginings of data frames from the **tidyverse**, a collection of R packages maintained by the [r-lib](https://www.r-lib.org) team that emphasizes tidy data, readable syntax, and interoperability.
-
-Tibbles behave like data frames but: - Never convert strings to factors automatically - Provide cleaner printing - Integrate more smoothly with `dplyr`, `ggplot2`, and related packages
-
-You can convert any data frame to a tibble using:
-
-```{r}
-library(tibble)
-tibble_df <- as_tibble(df)
-```
-
-Try running this and compare the output with `df`.
-
-------------------------------------------------------------------------
-
 ## Talking Agents Example
 
 Agents are *objects*, which is a comptuer science term for a template for a collection of data and functions.
@@ -335,22 +173,3 @@ Copy/paste the code above into the code block below then edit.
 
 ```
 
-------------------------------------------------------------------------
-
-## Wrapping Up: Networks and Diffusion
-
-We've now created agents and placed them in structured environments. One important next step is to understand how the structure of a social network affects the spread of information, behaviors, or innovations.
-
-How can we add realism to our social network models? What does "realism" look like? Next lecture we'll expand our theoretical knowledge of social networks, likely followed by another hands-on Worksheet session on Wednesday.
-
-For now, consider this:
-
-> **Which kinds of social networks help spread information best—and why?**
-
-One classic paper on how network structure might affect diffusion is Watts and Strogatz's 1998 study that creates "long-range ties" that connect agents who would otherwise be socially distant from one another: <https://www.nature.com/articles/30918>. Please have a look at this paper in the next week or so. Here is a preview of small-world networks that start from a *regular lattice* that has each of its edges progressively "rewired" with probability $p$, called the *rewiring probability.* (Hint: copy the "Small-world networks" example from `socmod` documentation in the *random networks* section: <https://css4s.github.io/socmod/#random-networks>)
-
-```{r}
-
-```
-
-### Think about agents in your network
